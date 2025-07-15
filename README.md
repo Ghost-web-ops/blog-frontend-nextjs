@@ -37,14 +37,14 @@ A sleek, responsive, and feature-rich frontend for the Blog API, built with Next
 
 - [Node.js](https://nodejs.org/) (v18.x or later)
 - [Git](https://git-scm.com/)
-- A **running instance** of the [Backend API](https://github.com/your-username/blog-api-nodejs).
+- A **running instance** of the [Backend API](https://github.com/Ghost-web-ops/blog-api-nodejs).
 
 ### Local Setup
 
 1. **Clone the repository:**
 
     ```bash
-    git clone [https://github.com/your-username/blog-frontend-nextjs.git](https://github.com/your-username/blog-frontend-nextjs.git)
+    git clone https://github.com/Ghost-web-ops/blog-frontend-nextjs.git
     cd blog-frontend-nextjs
     ```
 
@@ -75,4 +75,3 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## 📄 License
 
 This project is distributed under the MIT License. See `LICENSE` for more information.
-# blog-frontend-nextjs
