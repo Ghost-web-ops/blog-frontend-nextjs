@@ -2,18 +2,22 @@
 
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import toast from "react-hot-toast";
 
 export default function GoogleRedirectHandler() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const params = useSearchParams();
+  const { login } = useAuth();
 
   useEffect(() => {
-    const token = searchParams.get("token");
+    const token = params.get("token");
     if (token) {
-      localStorage.setItem("token", token);
-      router.replace("/"); // إعادة التوجيه بدون الباراميتر
+      login(token); // تخزين التوكن في AuthContext + localStorage
+      toast.success("Logged in successfully with Google!");
+      router.push("/"); // إعادة التوجيه للصفحة الرئيسية
     }
-  }, [searchParams, router]);
+  }, [params, login, router]);
 
-  return null; // لا يعرض أي شيء
+  return null;
 }
