@@ -1,6 +1,8 @@
 // src/app/page.tsx
 import { Post } from "@/interfaces";
 import PostCard from "../components/PostCard";
+import dynamic from "next/dynamic";
+const GoogleRedirectHandler = dynamic(() => import("../components/GoogleRedirectHandler"), { ssr: false });
 
 async function getPosts(): Promise<Post[]> {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
@@ -23,6 +25,7 @@ export default async function HomePage() {
 
   return (
     <main className="container mx-auto px-4 py-12">
+      <GoogleRedirectHandler />
       <div className="text-center mb-12">
         <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">
           The Blog
