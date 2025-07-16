@@ -2,26 +2,21 @@
 "use client";
 
 import { useEffect } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/context/AuthContext";
-import toast from "react-hot-toast";
 
 export default function GoogleRedirectPage() {
-  const params = useSearchParams();
-  const router = useRouter();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
   const { login } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
-    const token = params.get("token");
     if (token) {
-      login(token); // خزّن التوكن في AuthContext
-      toast.success("Logged in with Google!");
-      router.replace("/"); // ارجع للرئيسية
-    } else {
-      toast.error("Login failed.");
-      router.replace("/login");
+      login(token); // خزّنه في localStorage + context
+      router.replace("/"); // رحل للصفحة الرئيسية
     }
-  }, [params, login, router]);
+  }, [token, login, router]);
 
-  return <p className="text-center mt-10 text-white">Redirecting...</p>;
+  return <p className="text-center mt-12 text-slate-300">Signing in...</p>;
 }
