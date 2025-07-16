@@ -1,20 +1,19 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function GoogleRedirectHandler() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const url = new URL(window.location.href);
-    const token = url.searchParams.get("token");
-
+    const token = searchParams.get("token");
     if (token) {
-      localStorage.setItem("token", token); // تخزين التوكن
-      router.replace("/"); // إزالة التوكن من الرابط + إعادة تحميل الصفحة بدون query
+      localStorage.setItem("token", token);
+      router.replace("/"); // إعادة التوجيه بدون الباراميتر
     }
-  }, []);
+  }, [searchParams, router]);
 
-  return null;
+  return null; // لا يعرض أي شيء
 }
