@@ -17,10 +17,18 @@ async function getPost(id: string): Promise<Post | null> {
     return null;
   }
 }
+type PageProps = {
+  params: Promise<{
+    id: string;
+  }>;
+};
 
-export default async function PostPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+// 2. تعديل المكون ليصبح async ويستخدم await مع الـ props
+export default async function PostPage(props: PageProps) {
+  // 3. استخدام await للحصول على قيمة params
+  const { id } = await props.params;
   const post = await getPost(id);
+
 
   if (!post) {
     notFound();
