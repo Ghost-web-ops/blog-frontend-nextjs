@@ -22,6 +22,7 @@ export default function CreatePostPage() {
       const res = await apiFetch(`${apiUrl}/api/posts`, { // <-- استخدام apiFetch بدلاً من fetch
         method: 'POST',
         body: JSON.stringify({ title, content }),
+        
       });
 
       if (res.ok) {
